@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Player.gd" type="Script" id=1]
+[ext_resource path="res://animations/Fei.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://art/sfx/pew.wav" type="AudioStream" id=3]
+[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://art/龙门/飞龙/wing.png" type="Texture" id=5]
+[ext_resource path="res://animations/Rainbow.tres" type="Animation" id=6]
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 3
+script = ExtResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -0.391754, 0 )
+scale = Vector2( 0.3, 0.3 )
+frames = ExtResource( 2 )
+animation = "blink"
+flip_h = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 5, 5 )
+
+[node name="Mouth" type="Position2D" parent="."]
+position = Vector2( 50.9274, 21.1544 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -68.0529, -70.4413, -68.8364, -42.2354, -49.249, -24.2149, -49.249, 58.8358, 49.4718, 61.9698, 63.183, 38.4649, 34.1936, 36.5062, 29.4926, 20.8362, 40.8533, 3.991, 62.7912, 2.03226, 62.3995, -2.27698, 69.0592, -11.679, 67.4922, -21.0809, 63.9665, -23.0397, 58.482, -36.3591, 49.8635, -39.1014, 37.3275, -33.2251, 26.3586, -28.9159, 16.1731, -24.2149, 9.12163, -39.4931, -1.4556, -46.1529, -14.3833, -42.2354, -25.3523, -31.2664, -28.0945, -57.9053, -58.6509, -69.6578 )
+
+[node name="pew" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -15.0
+
+[node name="Tail" type="Position2D" parent="."]
+position = Vector2( -72, 19 )
+
+[node name="GUI" parent="." instance=ExtResource( 4 )]
+
+[node name="Fei" type="AnimationPlayer" parent="."]
+anims/fei = ExtResource( 6 )
+
+[node name="Wings" type="Node2D" parent="."]
+visible = false
+
+[node name="Left" type="Sprite" parent="Wings"]
+position = Vector2( -153, -68 )
+rotation = -1.5708
+scale = Vector2( 1.5, 1.5 )
+z_index = -5
+texture = ExtResource( 5 )
+flip_v = true
+
+[node name="Right" type="Sprite" parent="Wings"]
+position = Vector2( -154, 84 )
+rotation = 1.5708
+scale = Vector2( 1.5, 1.5 )
+z_index = -5
+texture = ExtResource( 5 )
